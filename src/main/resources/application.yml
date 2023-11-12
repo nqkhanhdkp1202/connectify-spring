@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://115.73.209.76:5432/connectify}
+    username: ${DATABASE_USERNAME:connectify_user}
+    password: ${DATABASE_PASSWORD:12345678}
+  tomcat:
+    initial-size: 50
+    max-wait: 20000
+    max-active: 500
+    max-idle: 150
+    min-idle: 8
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        format_sql: true
+        id:
+          new_generator_mappings: false
+    show-sql: false
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:5MB}
+      enabled: true
+      max-request-size: ${MAX_REQUEST_SIZE:5MB}
+security:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY:abc}
+    access-token:
+      expire-length: ${ACCESS_TOKEN_EXPIRE_LENGTH:3600}
+    refresh-token:
+      expire-length: ${REFRESH_TOKEN_EXPIRE_LENGTH:3600}
