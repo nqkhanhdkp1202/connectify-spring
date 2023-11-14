@@ -1,7 +1,7 @@
 package com.klgroup.connectify.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Service
-public class UserService {
+public interface UserService {
+    UserDetailsService userDetailsService();
 }

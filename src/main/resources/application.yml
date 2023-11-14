@@ -30,8 +30,16 @@ spring:
       max-request-size: ${MAX_REQUEST_SIZE:5MB}
 security:
   jwt:
-    secret-key: ${JWT_SECRET_KEY:abc}
+    secret-key: ${JWT_SECRET_KEY:413F4428472B4B6250655368566D5970337336763979244226452948404D6351}
     access-token:
-      expire-length: ${ACCESS_TOKEN_EXPIRE_LENGTH:3600}
-    refresh-token:
-      expire-length: ${REFRESH_TOKEN_EXPIRE_LENGTH:3600}
+      expire-length: ${ACCESS_TOKEN_EXPIRE_LENGTH:3600000}
+AuthController:
+  signIn: Authenticates user and returns its JWT token.
+  signUp: Creates user and returns its JWT token
+
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+  swagger-ui:
+    display-request-duration: true
