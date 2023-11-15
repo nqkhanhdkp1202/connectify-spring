@@ -52,6 +52,19 @@ public class SwaggerConfig {
                 .build();
     }
 
+    @Bean
+    public GroupedOpenApi postApi() {
+        final String[] packagesToScan = {"com.klgroup.connectify.controller"};
+        return GroupedOpenApi
+                .builder()
+                .group("Post API")
+                .packagesToScan(packagesToScan)
+                .pathsToMatch("/post/**")
+                .addOpenApiCustomizer(bearerAuthCustomizer())
+                .addOpenApiCustomizer(tagsSorterCustomizer())
+                .build();
+    }
+
     private OpenApiCustomizer bearerAuthCustomizer() {
         return openAPI -> openAPI
                 .schemaRequirement("Bearer", new SecurityScheme()
