@@ -2,7 +2,6 @@ package com.klgroup.connectify.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,24 +12,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
-public class Post {
-
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class BaseNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false)
     private String content;
 
     @ManyToOne
-    private EndUser author;
+    private EndUser userNotification;
 
-    @ManyToMany
-    private List<EndUser> userLiked;
-
+    protected abstract Notification getType();
 }
-
